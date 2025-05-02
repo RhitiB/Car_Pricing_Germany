@@ -26,18 +26,17 @@ This machine learning project estimates the **resale price of used cars in Germa
 
 ## 📁 Project Structure
 
-Car_Price_Prediction_KNN/
-├── app.py # Streamlit web app
-├── knn_model.pkl # Saved KNN model
-├── scaler.pkl # StandardScaler used during training
-├── requirements.txt # Python dependencies
-├── README.md # This documentation
-├── 01Data_Cleaning.ipynb # Notebook for cleaning raw dataset
-├── 02.Exploratory_Data_Analysis.ipynb
-├── 03Statistical_Data_Analysis.ipynb
-├── 04Feature_Engineering.ipynb
-├── cars_data.csv # Raw car dataset
-├── cars_dataset_cleaned.csv # Cleaned version used for training
+- `app.py`: Streamlit web app
+- `knn_model.pkl`: Saved KNN model
+- `scaler.pkl`: StandardScaler used during training
+- `requirements.txt`: Python dependencies
+- `README.md`: This documentation
+- `01Data_Cleaning.ipynb`: Cleaning raw dataset
+- `02.Exploratory_Data_Analysis.ipynb`
+- `03Statistical_Data_Analysis.ipynb`
+- `04Feature_Engineering.ipynb`
+- `cars_data.csv`: Raw dataset
+- `cars_dataset_cleaned.csv`: Cleaned version for model
 
 🧠 Model Training Notes
 The dataset was cleaned, analyzed, and transformed using multiple Jupyter Notebooks.
