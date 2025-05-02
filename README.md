@@ -1,4 +1,4 @@
-# 🚗 Car Price Prediction using K-Nearest Neighbors (KNN)
+# 🚗 Car Price Prediction using K-Nearest Neighbours (KNN)
 
 This machine learning project estimates the **resale price of used cars in Germany** using K-Nearest Neighbors Regression. The app takes four inputs from the user and predicts the price using a trained scikit-learn model — all served via a **Streamlit web app**.
 
@@ -8,12 +8,12 @@ This machine learning project estimates the **resale price of used cars in Germa
 
 - `year`: Year of manufacture of the car
 - `power_ps`: Engine power in PS (metric horsepower)
-- `fuel_consumption_g_km`: Fuel consumption in grams per kilometer
-- `mileage_in_km`: Total mileage driven (in kilometers)
+- `fuel_consumption_g_km`: Fuel consumption in grams per kilometre
+- `mileage_in_km`: Total mileage driven (in kilometres)
 
 ---
 
-## 💡 Technologies Used
+##  Technologies Used
 
 | Component         | Tool/Library     |
 |------------------|------------------|
@@ -24,7 +24,7 @@ This machine learning project estimates the **resale price of used cars in Germa
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 - `app.py`: Streamlit web app
 - `knn_model.pkl`: Saved KNN model
@@ -35,15 +35,21 @@ This machine learning project estimates the **resale price of used cars in Germa
 - `02.Exploratory_Data_Analysis.ipynb`
 - `03Statistical_Data_Analysis.ipynb`
 - `04Feature_Engineering.ipynb`
-- `cars_data.csv`: Raw dataset
-- `cars_dataset_cleaned.csv`: Cleaned version for model
+---
+  
+## Dataset Source
 
-🧠 Model Training Notes
-The dataset was cleaned, analyzed, and transformed using multiple Jupyter Notebooks.
+The dataset used in this project was obtained from Germany Used Cars Dataset 2023 available on Kaggle.
+After downloading, the files were renamed as follows:
 
-A K-Nearest Neighbors model was trained on scaled inputs using StandardScaler.
+- cars_dataset.csv (original dataset)
+- cars_dataset_cleaned.csv (dataset after data cleaning)
+---
 
-The best k was chosen through experimentation (k=5).
+## Model Training Notes
 
-The trained model and scaler were saved using Python's pickle module.
+- The dataset was cleaned, analyzed, and transformed using multiple Jupyter Notebooks.
+- A K-Nearest Neighbors model was trained on scaled inputs using StandardScaler.
+- The best k was chosen through experimentation (k=5).
+- The trained model and scaler were saved using Python's pickle module.
 
