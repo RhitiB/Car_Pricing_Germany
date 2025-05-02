@@ -39,7 +39,7 @@ This machine learning project estimates the **resale price of used cars in Germa
   
 ## Dataset Source
 
-The dataset used in this project was obtained from Germany Used Cars Dataset 2023 available on Kaggle.
+The dataset used in this project was obtained from Germany Used Cars Dataset 2023 available on Kaggle (https://www.kaggle.com/datasets/wspirat/germany-used-cars-dataset-2023).
 After downloading, the files were renamed as follows:
 
 - cars_dataset.csv (original dataset)
