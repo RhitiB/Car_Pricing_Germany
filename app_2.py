@@ -3,6 +3,9 @@ import pickle
 import pandas as pd
 import time
 import os
+import os
+st.write("Current working directory:", os.getcwd())
+st.write("Files in directory:", os.listdir())
 # Load model and scaler
 with open('knn_model.pkl', 'rb') as f:
     model = pickle.load(f)
@@ -29,9 +32,4 @@ if st.button("Predict Price"):
     prediction = model.predict(input_scaled)[0]
 
     st.success(f"💰 Estimated Resale Price: €{prediction:,.2f}")
-    st.info("✅ Closing the app in 3 seconds... Please wait.")
-
-    # Force a clean shutdown after prediction
-
-    time.sleep(3)
-    os._exit(0)
+    st.info("✅ You can close the app now")    
