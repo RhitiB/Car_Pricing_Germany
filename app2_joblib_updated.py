@@ -1,9 +1,11 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import base64
 
-# Apply fancy background using base64 image encoding
-def add_bg_from_url():
+# Apply fancy background and custom styling
+
+def add_custom_styles():
     st.markdown(
         f"""
         <style>
@@ -12,12 +14,25 @@ def add_bg_from_url():
             background-attachment: fixed;
             background-size: cover;
         }}
+        h1, h2, h3, h4, h5, h6, .stMarkdown, label {{
+            color: #007BFF !important;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+        }}
+        .stNumberInput label, .stSelectbox label {{
+            font-size: 18px;
+        }}
+        .stButton>button {{
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-add_bg_from_url()
+add_custom_styles()
 
 # Load model and scaler
 model = joblib.load('knn_model.joblib')
