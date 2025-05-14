@@ -25,38 +25,27 @@ currency_rates = {
 country = st.selectbox("\U0001F30D Select Country", list(currency_rates.keys()))
 currency_code, symbol, rate = currency_rates[country]
 
-# --- Brand List (hidden from user, assigned randomly just for demo) ---
-brands = [
-    'Alfa-Romeo', 'Aston-Martin', 'Audi', 'Bentley', 'BMW', 'Cadillac',
-    'Chevrolet', 'Chrysler', 'Citroen', 'Dacia', 'Daewoo', 'Daihatsu',
-    'Dodge', 'Ferrari', 'Fiat', 'Ford', 'Honda', 'Hyundai', 'Infiniti',
-    'Isuzu', 'Jaguar', 'JEEP', 'KIA', 'Lada', 'Lamborghini', 'Lancia',
-    'Land-Rover', 'Maserati', 'Mazda', 'Mercedes-Benz', 'Mini',
-    'Mitsubishi', 'Nissan', 'Opel', 'Peugeot', 'Porsche', 'Proton',
-    'Renault', 'Rover', 'Saab', 'Seat', 'Skoda', 'Smart', 'Ssangyong',
-    'Toyota', 'Volkswagen', 'Volvo'
-]
-
-# --- Premium Brand Multipliers ---
+# --- Brand Logos and Premium Multipliers ---
 premium_multipliers = {
-    "BMW": 1.10,
-    "Audi": 1.08,
-    "Mercedes-Benz": 1.12,
-    "Porsche": 1.15,
-    "Ferrari": 1.25,
-    "Bentley": 1.3,
-    "Lamborghini": 1.35
-}
-brand_logos = {
-    "BMW": "https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo-768x432.png",
-    "Audi": "https://1000logos.net/wp-content/uploads/2018/02/Audi-Logo-768x432.png",
-    "Mercedes-Benz": "https://1000logos.net/wp-content/uploads/2018/02/Mercedes-Benz-Logo-768x432.png",
-    "Porsche": "https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo-768x432.png",
-    "Ferrari": "https://1000logos.net/wp-content/uploads/2018/02/Ferrari-Logo-768x432.png",
-    "Lamborghini": "https://1000logos.net/wp-content/uploads/2018/02/Lamborghini-Logo-768x432.png"
+    "bmw": 1.10,
+    "audi": 1.08,
+    "mercedes-benz": 1.12,
+    "porsche": 1.15,
+    "ferrari": 1.25,
+    "bentley": 1.3,
+    "lamborghini": 1.35
 }
 
-# --- Year ---
+brand_logos = {
+    "bmw": "https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo-768x432.png",
+    "audi": "https://1000logos.net/wp-content/uploads/2018/02/Audi-Logo-768x432.png",
+    "mercedes-benz": "https://1000logos.net/wp-content/uploads/2018/02/Mercedes-Benz-Logo-768x432.png",
+    "porsche": "https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo-768x432.png",
+    "ferrari": "https://1000logos.net/wp-content/uploads/2018/02/Ferrari-Logo-768x432.png",
+    "lamborghini": "https://1000logos.net/wp-content/uploads/2018/02/Lamborghini-Logo-768x432.png"
+}
+
+# --- Inputs ---
 year = st.number_input("Year of Manufacture", min_value=1990, max_value=2025, step=1)
 
 power_unit = st.selectbox("Select Power Unit", ["PS", "kW"])
@@ -86,15 +75,15 @@ if st.button("Predict Price"):
     })
 
     input_scaled = scaler.transform(input_df)
-    prediction = model.predict(input_scaled)[0]  # regression output
-    predicted_brand_idx = model.classes_[prediction.astype(int)] if hasattr(model, 'classes_') else None
-    predicted_brand = brand_encoder.inverse_transform([prediction.astype(int)])[0] if predicted_brand_idx is None else predicted_brand_idx
+    base_price_eur = model.predict(input_scaled)[0]
 
+    # Choose default brand logic (optional static mapping or skip)
+    predicted_brand = "bmw" if base_price_eur > 40000 else "hyundai"
     brand_multiplier = premium_multipliers.get(predicted_brand.lower(), 1.0)
-    final_price = prediction * brand_multiplier * rate
+    final_price = base_price_eur * brand_multiplier * rate
 
     if predicted_brand.lower() in brand_logos:
         st.image(brand_logos[predicted_brand.lower()], width=120)
 
     st.success(f"\U0001F4B0 Estimated Price for **{predicted_brand.title()}** in **{country}**: {symbol}{final_price:,.2f}")
-    st.caption(f"\U0001F50E Base price in EUR: €{prediction:,.2f} (Brand: {predicted_brand.title()} × {brand_multiplier})")
+    st.caption(f"\U0001F50E Base price in EUR: €{base_price_eur:,.2f} (Brand: {predicted_brand.title()} × {brand_multiplier})")
