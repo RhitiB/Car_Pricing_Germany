@@ -2,6 +2,23 @@ import streamlit as st
 import joblib
 import pandas as pd
 
+# Apply fancy background using base64 image encoding
+def add_bg_from_url():
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80");
+            background-attachment: fixed;
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+add_bg_from_url()
+
 # Load model and scaler
 model = joblib.load('knn_model.joblib')
 scaler = joblib.load('scaler.joblib')
