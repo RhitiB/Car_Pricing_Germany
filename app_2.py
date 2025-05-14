@@ -4,7 +4,7 @@ import pandas as pd
 import time
 import os
 # Load model and scaler
-with open('knn_model.pkl', 'wb') as f:
+with open('knn_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 with open('scaler.pkl', 'rb') as f:
