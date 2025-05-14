@@ -26,9 +26,9 @@ This machine learning project estimates the **resale price of used cars in Germa
 
 ## Project Structure
 
-- `app.py`: Streamlit web app
-- `knn_model.pkl`: Saved KNN model
-- `scaler.pkl`: StandardScaler used during training
+- `app2_joblib.py`: Streamlit web app
+- `knn_model.joblib`: Saved KNN model
+- `scaler.joblib`: StandardScaler used during training
 - `requirements.txt`: Python dependencies
 - `README.md`: This documentation
 - `01Data_Cleaning.ipynb`: Cleaning raw dataset
